@@ -1,0 +1,49 @@
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .task-table th, .task-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+  }
+  
+  .task-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .task-table .no-tasks {
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .btn-editar {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .btn-eliminar {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+
+  .btn-editar:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-eliminar:hover {
+    background-color: red;
+  }
