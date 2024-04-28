@@ -9,7 +9,7 @@ export const Dashboard = () => {
   const [tasks, setTasks] = useState({ tareas: [] });
 
   const handleToggleAddTask = () => {
-    setShowAddTask(!showAddTask); // Invierte el valor de showAddTask
+    setShowAddTask(!showAddTask); 
   };
 
   useEffect(() => {

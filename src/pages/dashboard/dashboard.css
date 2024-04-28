@@ -13,7 +13,7 @@
 .cancel-btn {
   position: absolute;
   top: 170px;
-  left: 330px; /* Ajusta la posición horizontal según sea necesario */
+  left: 330px;
   background-color: #dc3545;
   color: #ffffff;
 }
