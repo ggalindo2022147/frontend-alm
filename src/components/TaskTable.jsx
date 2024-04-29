@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import './css/taskTable.css';
+import { useDeleteTask } from "../shared/hooks";
 
 export const TaskTable = ({ tasks }) => {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("es-ES");
     };
+
+    const [formState] = useState();
+
+    const deleteTask = useDeleteTask()
+
+    const handleDeleteTask = async (taskId) => {
+        try{
+            await deleteTask(taskId, {estadoTarea:"false"})
+        }catch(error){
+            console.error('fallamos',error);
+        }
+    }
 
     return (
         <table className="task-table">
@@ -32,7 +45,7 @@ export const TaskTable = ({ tasks }) => {
                             <td>{task.creador}</td>
                             <td>
                                 <button className="btn-editar">Editar</button>
-                                <button className="btn-eliminar">Eliminar</button>
+                                <button className="btn-eliminar" onClick={handleDeleteTask(task.id)}>Eliminar</button>
                             </td>
                         </tr>
                     ))
