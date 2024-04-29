@@ -26,3 +26,14 @@ export const getTasks = async () => {
         }
     }
 }
+
+export const getDeleteTask = async (data) => {
+    try {
+        return await apiClient.post('/tarea', data)
+    } catch (e) {
+        return{
+            error: true,
+            e
+        }
+    }
+}
