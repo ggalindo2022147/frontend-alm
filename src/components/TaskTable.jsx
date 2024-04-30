@@ -20,7 +20,7 @@ export const TaskTable = ({ tasks }) => {
         }
     }
 
-    return (
+    return (        
         <table className="task-table">
             <thead>
                 <tr>
