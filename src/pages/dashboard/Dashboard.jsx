@@ -35,7 +35,7 @@ export const Dashboard = () => {
   }
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container" align="center">
       {!showAddTask && (
         <button className="add-task-btn" onClick={handleToggleAddTask}>
           Agregar tarea
@@ -49,7 +49,7 @@ export const Dashboard = () => {
       )}
 
       {!showAddTask && (
-        <div>
+        <div color="white">
           <h1>Dashboard</h1>
           <TaskTable tasks={tasks.tareas} handleEditTask={handleToggleEditTask} />
         </div>
