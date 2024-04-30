@@ -1,4 +1,4 @@
-div{
+div-task{
   align-content: center;
   background-color: aqua;
   height: 99vh;
@@ -10,17 +10,16 @@ div{
     border-left: hidden;
     border-top: hidden;
     border-bottom: hidden;
-    background-color: green;
+    background-color: beige;
+    border: 2px solid #007bff;
     padding: 4px;
-    border-radius: 2rem;
   }
   
   .task-table tr, .task-table td {
-    overflow: hidden;
-    border-radius: 2rem;
-    border: 1px solid purple;
-    background-color: greenyellow;
-    color: green;
+
+    border: 1px solid #007bff;
+    border-color: lighten(#fff, 10%);
+    color: #000;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     padding: 1vh;
@@ -30,9 +29,9 @@ div{
   .task-table th {
     overflow: hidden;
     border-radius: 2rem;
-    border: 1px solid purple;
-    background-color: greenyellow;
-    color: green;
+    border: 1px solid #007bff;
+    background-color: white;
+    color: #007bff;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     padding: 1vh;
