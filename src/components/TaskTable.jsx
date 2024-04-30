@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import './css/taskTable.css';
 import { useDeleteTask } from "../shared/hooks";
+import { useEditarTask } from "../shared/hooks";
 
-export const TaskTable = ({ tasks, handleEditTask }) => {
+export const TaskTable = ({ tasks }) => {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("es-ES");
@@ -19,6 +20,17 @@ export const TaskTable = ({ tasks, handleEditTask }) => {
             console.error('fallamos',e);
         }
     }
+
+    const { fetchEditarTaskSettings } = useEditarTask();
+
+    const handleEditTask = async (taskId) => {
+        try {
+            await fetchEditarTaskSettings(taskId);
+        } catch (e) {
+            console.error("Error al cargar los datos para editar", e);
+        }
+    };
+    
 
     return (        
         <table className="task-table">
@@ -45,7 +57,7 @@ export const TaskTable = ({ tasks, handleEditTask }) => {
                                 <td>{task.estado}</td>
                                 <td>{task.creador}</td>
                                 <td>
-                                <button className="btn-editar" onClick={() => handleEditTask(task)}>Editar</button>
+                                <button className="btn-editar" onClick={() => handleEditTask(task._id)}>Editar</button>
                                     {console.log("task.id:", task)}
                                     <button className="btn-eliminar" onClick={() => handleDeleteTask(task._id)}>Eliminar</button>
                                 </td>
