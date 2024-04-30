@@ -14,6 +14,7 @@ export const TaskTable = ({ tasks }) => {
         console.log("accion",taskId)
         try{
             await deleteTask(taskId)
+            window.location.reload();
         }catch(e){
             console.error('fallamos',e);
         }
@@ -35,19 +36,21 @@ export const TaskTable = ({ tasks }) => {
             <tbody>
                 {tasks.length > 0 ? (
                     tasks.map((task, index) => (
-                        <tr key={index}>
-                            <td>{task.nombre}</td>
-                            <td>{task.descripcion}</td>
-                            <td>{formatDate(task.fechaInicio)}</td>
-                            <td>{formatDate(task.fechaCierre)}</td>
-                            <td>{task.estadoTarea}</td>
-                            <td>{task.creador}</td>
-                            <td>
-                                <button className="btn-editar">Editar</button>
-                                {console.log("task.id:", task)}
-                                <button className="btn-eliminar" onClick={() => handleDeleteTask(task._id)}>Eliminar</button>
-                            </td>
-                        </tr>
+                        task.estado !== "false" && (
+                            <tr key={index}>
+                                <td>{task.nombre}</td>
+                                <td>{task.descripcion}</td>
+                                <td>{formatDate(task.fechaInicio)}</td>
+                                <td>{formatDate(task.fechaCierre)}</td>
+                                <td>{task.estado}</td>
+                                <td>{task.creador}</td>
+                                <td>
+                                    <button className="btn-editar">Editar</button>
+                                    {console.log("task.id:", task)}
+                                    <button className="btn-eliminar" onClick={() => handleDeleteTask(task._id)}>Eliminar</button>
+                                </td>
+                            </tr>
+                        )
                     ))
                 ) : (
                     <tr>
