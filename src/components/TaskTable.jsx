@@ -8,15 +8,14 @@ export const TaskTable = ({ tasks }) => {
         return date.toLocaleDateString("es-ES");
     };
 
-    const [formState] = useState();
-
-    const deleteTask = useDeleteTask()
+    const {deleteTask} = useDeleteTask()
 
     const handleDeleteTask = async (taskId) => {
+        console.log("accion",taskId)
         try{
-            await deleteTask(taskId, {estadoTarea:"false"})
-        }catch(error){
-            console.error('fallamos',error);
+            await deleteTask(taskId)
+        }catch(e){
+            console.error('fallamos',e);
         }
     }
 
@@ -45,7 +44,8 @@ export const TaskTable = ({ tasks }) => {
                             <td>{task.creador}</td>
                             <td>
                                 <button className="btn-editar">Editar</button>
-                                <button className="btn-eliminar" onClick={handleDeleteTask(task.id)}>Eliminar</button>
+                                {console.log("task.id:", task)}
+                                <button className="btn-eliminar" onClick={() => handleDeleteTask(task._id)}>Eliminar</button>
                             </td>
                         </tr>
                     ))
