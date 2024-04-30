@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Input } from '../settings/Input';
 import { useTask } from '../shared/hooks';
-import '../components/css/addTask.css'; 
+import '../components/css/addTask.css';
 
-export const AddTask = () => {
-    const { addTask, isLoading } = useTask();
+export const EdiarTask = () => {
+    const { editTask, isLoading } = useTask();
 
     const [formState, setFormState] = useState({
         nombre: {
@@ -75,13 +75,19 @@ export const AddTask = () => {
         }))
     }
 
-    const handleAddTask = async (event) => {
+    const handleEditTask = async (event) => {
         event.preventDefault();
-        const response = await addTask(formState.nombre.value, formState.descripcion.value, formState.fechaInicio.value, formState.fechaCierre.value, formState.creador.value);
-        // Recargar la página después de agregar una tarea con éxito
+        const response = await editTask({
+            nombre: formState.nombre.value,
+            descripcion: formState.descripcion.value,
+            fechaInicio: formState.fechaInicio.value,
+            fechaCierre: formState.fechaCierre.value,
+            creador: formState.creador.value
+        });
+        // Recargar la página después de editar una tarea con éxito
         window.location.reload();
-
     }
+    
 
     const isSubmitButtonDisabled = isLoading || !formState.nombre.isValid || !formState.descripcion.isValid || !formState.fechaInicio.isValid || !formState.fechaCierre.isValid || !formState.creador.isValid;
 
@@ -136,7 +142,7 @@ export const AddTask = () => {
                 <br />
                 <br />
                 <div className="button-container">
-                    <button className="add-task-bt" onClick={handleAddTask} disabled={isSubmitButtonDisabled}>
+                    <button className="add-task-bt" onClick={handleEditTask} disabled={isSubmitButtonDisabled}>
                         Agregar Tarea
                     </button>
                     <button className="cancel-task-bt" onClick={() => window.location.href = '/dashboard'}>

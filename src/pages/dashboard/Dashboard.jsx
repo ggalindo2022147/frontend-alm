@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { EdiarTask } from "../../components/EditarTask";
 import { AddTask } from "../../components/AddTask";
 import { TaskTable } from "../../components/TaskTable";
 import { getTasks } from "../../services/";
@@ -7,6 +8,7 @@ import './dashboard.css';
 export const Dashboard = () => {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState({ tareas: [] });
+  const [selectedTask, setSelectedTask] = useState(null); 
 
   const handleToggleAddTask = () => {
     setShowAddTask(!showAddTask); 
@@ -28,6 +30,10 @@ export const Dashboard = () => {
     fetchTasks();
   }, []);
 
+  const handleToggleEditTask = (task) => {
+    setSelectedTask(task); // Establecer la tarea seleccionada para editar
+  }
+
   return (
     <div className="dashboard-container">
       {!showAddTask && (
@@ -35,15 +41,24 @@ export const Dashboard = () => {
           Agregar tarea
         </button>
       )}
+      
       {showAddTask && (
         <div>
           <AddTask />
         </div>
       )}
+
       {!showAddTask && (
         <div>
           <h1>Dashboard</h1>
-          <TaskTable tasks={tasks.tareas} />
+          <TaskTable tasks={tasks.tareas} handleEditTask={handleToggleEditTask} />
+        </div>
+      )}
+      
+      {selectedTask && (
+        <div>
+          <h2>Editar Tarea</h2>
+          <EdiarTask task={selectedTask} />
         </div>
       )}
     </div>

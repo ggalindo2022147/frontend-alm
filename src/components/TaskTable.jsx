@@ -1,7 +1,7 @@
 import React from "react";
 import './css/taskTable.css';
 
-export const TaskTable = ({ tasks }) => {
+export const TaskTable = ({ tasks, handleEditTask }) => {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("es-ES");
@@ -31,7 +31,7 @@ export const TaskTable = ({ tasks }) => {
                             <td>{task.estadoTarea}</td>
                             <td>{task.creador}</td>
                             <td>
-                                <button className="btn-editar">Editar</button>
+                            <button className="btn-editar" onClick={() => handleEditTask(task)}>Editar</button>
                                 <button className="btn-eliminar">Eliminar</button>
                             </td>
                         </tr>
