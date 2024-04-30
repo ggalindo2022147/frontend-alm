@@ -1,17 +1,42 @@
+div{
+  align-content: center;
+  background-color: aqua;
+  height: 99vh;
+  display: table;
+}
+
 .task-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    border-right: hidden;
+    border-left: hidden;
+    border-top: hidden;
+    border-bottom: hidden;
+    background-color: green;
+    padding: 4px;
+    border-radius: 2rem;
   }
   
-  .task-table th, .task-table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
+  .task-table tr, .task-table td {
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 1px solid purple;
+    background-color: greenyellow;
+    color: green;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 1vh;
+    margin: 1vh;
   }
   
   .task-table th {
-    background-color: #f2f2f2;
-    text-align: left;
+    overflow: hidden;
+    border-radius: 2rem;
+    border: 1px solid purple;
+    background-color: greenyellow;
+    color: green;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 1vh;
+    margin: 1vh;
   }
   
   .task-table .no-tasks {
@@ -41,9 +66,13 @@
   
 
   .btn-editar:hover {
-    background-color: #0056b3;
+    background-color: whitesmoke;
+    color:#0056b3;
+    border: 2px solid #0056b3;
   }
 
   .btn-eliminar:hover {
-    background-color: red;
+    background-color: whitesmoke;
+    border: 2px solid red;
+    color: red;
   }

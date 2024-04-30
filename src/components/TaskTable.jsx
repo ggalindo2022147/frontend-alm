@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import './css/taskTable.css';
+import { useDeleteTask } from "../shared/hooks";
 
 export const TaskTable = ({ tasks, handleEditTask }) => {
     const formatDate = (dateString) => {
@@ -7,7 +8,19 @@ export const TaskTable = ({ tasks, handleEditTask }) => {
         return date.toLocaleDateString("es-ES");
     };
 
-    return (
+    const {deleteTask} = useDeleteTask()
+
+    const handleDeleteTask = async (taskId) => {
+        console.log("accion",taskId)
+        try{
+            await deleteTask(taskId)
+            window.location.reload();
+        }catch(e){
+            console.error('fallamos',e);
+        }
+    }
+
+    return (        
         <table className="task-table">
             <thead>
                 <tr>
@@ -23,18 +36,21 @@ export const TaskTable = ({ tasks, handleEditTask }) => {
             <tbody>
                 {tasks.length > 0 ? (
                     tasks.map((task, index) => (
-                        <tr key={index}>
-                            <td>{task.nombre}</td>
-                            <td>{task.descripcion}</td>
-                            <td>{formatDate(task.fechaInicio)}</td>
-                            <td>{formatDate(task.fechaCierre)}</td>
-                            <td>{task.estadoTarea}</td>
-                            <td>{task.creador}</td>
-                            <td>
-                            <button className="btn-editar" onClick={() => handleEditTask(task)}>Editar</button>
-                                <button className="btn-eliminar">Eliminar</button>
-                            </td>
-                        </tr>
+                        task.estado !== "false" && (
+                            <tr key={index}>
+                                <td>{task.nombre}</td>
+                                <td>{task.descripcion}</td>
+                                <td>{formatDate(task.fechaInicio)}</td>
+                                <td>{formatDate(task.fechaCierre)}</td>
+                                <td>{task.estado}</td>
+                                <td>{task.creador}</td>
+                                <td>
+                                <button className="btn-editar" onClick={() => handleEditTask(task)}>Editar</button>
+                                    {console.log("task.id:", task)}
+                                    <button className="btn-eliminar" onClick={() => handleDeleteTask(task._id)}>Eliminar</button>
+                                </td>
+                            </tr>
+                        )
                     ))
                 ) : (
                     <tr>

@@ -38,3 +38,14 @@ export const editTask = async (Data) => {
     }
 };
 
+export const deleteTask = async (taskId) => {
+    console.log(taskId)
+    try {
+        return await apiClient.delete(`/tarea/${taskId}`)
+    } catch (e) {
+        return{
+            error: true,
+            e
+        }
+    }
+}
