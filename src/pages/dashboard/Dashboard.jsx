@@ -31,7 +31,7 @@ export const Dashboard = () => {
   }, []);
 
   const handleToggleEditTask = (task) => {
-    setSelectedTask(task); // Establecer la tarea seleccionada para editar
+    setSelectedTask(task); 
   }
 
   return (

@@ -27,13 +27,14 @@ export const getTasks = async () => {
     }
 }
 
-export const editTask = async (taskId, newData) => {
+export const editTask = async (Data) => {
     try {
-        return await apiClient.put(`/tarea/${taskId}`, newData);
+        return await apiClient.put(`/tarea`, Data);
     } catch (error) {
         return {
             error: true,
-            message: error.message
+            e
         };
     }
 };
+
