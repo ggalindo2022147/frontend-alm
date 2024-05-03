@@ -1,38 +1,25 @@
 import React, { useState } from "react";
 import './css/taskTable.css';
 import { useDeleteTask } from "../shared/hooks";
-import { useEditarTask } from "../shared/hooks";
 
-export const TaskTable = ({ tasks }) => {
+export const TaskTable = ({ tasks, onEditTask }) => {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         return date.toLocaleDateString("es-ES");
     };
 
-    const {deleteTask} = useDeleteTask()
+    const { deleteTask } = useDeleteTask();
 
     const handleDeleteTask = async (taskId) => {
-        console.log("accion",taskId)
-        try{
-            await deleteTask(taskId)
-            window.location.reload();
-        }catch(e){
-            console.error('fallamos',e);
-        }
-    }
-
-    const { fetchEditarTaskSettings } = useEditarTask();
-
-    const handleEditTask = async (taskId) => {
         try {
-            await fetchEditarTaskSettings(taskId);
+            await deleteTask(taskId);
+            window.location.reload();
         } catch (e) {
-            console.error("Error al cargar los datos para editar", e);
+            console.error('fallamos', e);
         }
     };
-    
 
-    return (        
+    return (
         <table className="task-table">
             <thead>
                 <tr>
@@ -57,8 +44,7 @@ export const TaskTable = ({ tasks }) => {
                                 <td>{task.estado}</td>
                                 <td>{task.creador}</td>
                                 <td>
-                                <button className="btn-editar" onClick={() => handleEditTask(task._id)}>Editar</button>
-                                    {console.log("task.id:", task)}
+                                    <button className="btn-editar" onClick={() => onEditTask(task)}>Editar</button>
                                     <button className="btn-eliminar" onClick={() => handleDeleteTask(task._id)}>Eliminar</button>
                                 </td>
                             </tr>

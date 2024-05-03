@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { EdiarTask } from "../../components/EditarTask";
 import { AddTask } from "../../components/AddTask";
+import EditarTask from "../../components/EditarTask"; // Corregido el nombre del componente
 import { TaskTable } from "../../components/TaskTable";
 import { getTasks } from "../../services/";
 import './dashboard.css';
@@ -51,16 +51,18 @@ export const Dashboard = () => {
       {!showAddTask && (
         <div color="white">
           <h1>Dashboard</h1>
-          <TaskTable tasks={tasks.tareas} handleEditTask={handleToggleEditTask} />
+          <TaskTable tasks={tasks.tareas} onEditTask={handleToggleEditTask} /> {}
         </div>
       )}
       
-      {selectedTask && (
-        <div>
-          <h2>Editar Tarea</h2>
-          <EdiarTask task={selectedTask} />
-        </div>
-      )}
+          {!showAddTask && selectedTask && (
+      <div>
+        <h2>Editar Tarea</h2>
+        <EditarTask task={selectedTask} /> 
+      </div>
+    )}
+
+
     </div>
   );
 };

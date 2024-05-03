@@ -6,17 +6,26 @@ export const useTasks = () => {
     const [tasks, setTasks] = useState([]);
 
     const getTasks = async () => {
-        const taskData = await getTaskRequest();
+        try {
+            const taskData = await getTaskRequest();
 
-        if (taskData.error) {
-            return toast.error(
-                taskData.e.response.data || "Error al obtener las tareas"
-            );
+            if (taskData.error) {
+                toast.error(
+                    taskData.e.response.data || "Error al obtener las tareas"
+                );
+                return;
+            }
+
+            setTasks(taskData.data);
+            return taskData.data;
+        } catch (error) {
+            console.error("Error al obtener las tareas:", error);
+            toast.error("Error al obtener las tareas");
         }
+    };
 
-        setTasks(taskData.data);
-
-        return taskData.data;
-    }
-
-}
+    return {
+        tasks,
+        getTasks,
+    };
+};

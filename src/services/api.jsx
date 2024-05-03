@@ -27,40 +27,6 @@ export const getTasks = async () => {
     }
 }
 
-export const editTask = async (data, taskId) => {
-    try {
-        return await apiClient.put(`/tarea/${taskId}`, data);
-    } catch (error) {
-        return {
-            error: true,
-            e
-        };
-    }
-};
-
-export const geteditTask = async (taskId) => {
-    try {
-        return await apiClient.get(`/tarea/${taskId}`);
-    } catch (e) {
-        return {
-            error: true,
-            e
-        };
-    }
-};
-
-export const updategeteditTask = async (taskId, data) => {
-    try {
-        return await apiClient.put(`/tarea/${taskId}`, data);
-    } catch (e) {
-        return {
-            error: true,
-            e
-        };
-    }
-};
-
-
 export const deleteTask = async (taskId) => {
     console.log(taskId)
     try {
@@ -72,3 +38,14 @@ export const deleteTask = async (taskId) => {
         }
     }
 }
+
+export const updateTask = async (taskId, data) => {
+    try {
+        return await apiClient.put(`/tarea/${taskId}`, data);
+    } catch (e) {
+        return {
+            error: true,
+            e
+        };
+    }
+};
