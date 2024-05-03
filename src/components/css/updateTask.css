@@ -1,0 +1,37 @@
+.update-task-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.update-task-form {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    border: 3px solid #0bdf1c;
+    border-radius: 3rem;
+    background-color: #fff;
+    margin-top: 2vh;
+    color: #007bff;
+}
+
+.div-input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1vh;
+    color: #007bff;
+    flex-direction: column;
+}
+
+.update-text-container {
+    color: #007bff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+.update-input{
+    text-align: center;
+    border: 2px solid #0bdf1c;
+    color: #007bff;
+    border-radius: 3rem;
+    margin: 1vh;
+}
