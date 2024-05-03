@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { updateTask } from '../services'; // Importa la función para actualizar la tarea
 import toast from 'react-hot-toast';
+import '../components/css/updateTask.css';
 
 const EditarTask = ({ task }) => {
   const [editedTask, setEditedTask] = useState(task);
@@ -23,28 +24,30 @@ const EditarTask = ({ task }) => {
   
 
   return (
-    <div>
-      <div>
-        <label>Nombre:</label>
-        <input type="text" name="nombre" value={editedTask.nombre} onChange={handleInputChange} />
-      </div>
-      <div>
-        <label>Descripción:</label>
-        <input type="text" name="descripcion" value={editedTask.descripcion} onChange={handleInputChange} />
-      </div>
-      <div>
-        <label>Fecha de inicio:</label>
-        <input type="date" name="fechaInicio" value={editedTask.fechaInicio} onChange={handleInputChange} />
-      </div>
-      <div>
-        <label>Fecha de cierre:</label>
-        <input type="date" name="fechaCierre" value={editedTask.fechaCierre} onChange={handleInputChange} />
-      </div>
-      <div>
-        <label>Creador:</label>
-        <input type="text" name="creador" value={editedTask.creador} onChange={handleInputChange} />
-      </div>
-      <button onClick={handleUpdateTask}>Guardar cambios</button>
+    <div className='update-task-container'>
+      <form action="" className='update-task-form'>
+        <div className='div-input-container'>
+          <label className='update-text-container'>Nombre:</label>
+          <input type="text" name="nombre" value={editedTask.nombre} onChange={handleInputChange} className='update-input' />
+        </div>
+        <div className='div-input-container'>
+          <label className='update-text-container'>Descripción:</label>
+          <input type="text" name="descripcion" value={editedTask.descripcion} onChange={handleInputChange} className='update-input'/>
+        </div>
+        <div className='div-input-container'>
+          <label className='update-text-container'>Fecha de inicio:</label>
+          <input type="date" name="fechaInicio" value={editedTask.fechaInicio} onChange={handleInputChange} className='update-input' />
+        </div>
+        <div className='div-input-container'>
+          <label className='update-text-container'>Fecha de cierre:</label>
+          <input type="date" name="fechaCierre" value={editedTask.fechaCierre} onChange={handleInputChange} className='update-input' />
+        </div>
+        <div className='div-input-container'>
+          <label className='update-text-container'>Creador:</label>
+          <input type="text" name="creador" value={editedTask.creador} onChange={handleInputChange} className='update-input' />
+        </div>
+        <button onClick={handleUpdateTask}>Guardar cambios</button>
+      </form>
     </div>
   );
 };
